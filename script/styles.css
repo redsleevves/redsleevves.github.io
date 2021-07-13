@@ -110,7 +110,7 @@ img[name="bg"]{
 
 .title{
   width: 35%;
-  height: 20%;
+  /* height: 20%; */
   position: absolute;
   left: 50%;
   top:50%;
@@ -252,16 +252,10 @@ h1{
   display: flex;
   justify-content: space-between;
 }
-.abstract2{
-  top: 260px;
-}
-.abstract3{
-  top: 520px;
-}
+
 .abstract img{
   width: 20%;
   filter: drop-shadow(4px 4px 4px rgba(23, 37, 39, 0.829));
-
 }
 
 .animals{
@@ -456,10 +450,8 @@ a.slide_btn {
 
 .previous_btn, .next_btn {
   cursor: pointer;
-  height: 65px;
   opacity: 0.5;
   transition: opacity 0.4s ease-in-out;
-  width: 65px;
 }
 
 .previous_btn:hover, .next_btn:hover {
@@ -507,7 +499,18 @@ img {
   display: block;
   /* width: 100%;  */
 }
-
+.ticket{
+  position: relative;
+}
+.ticket .bird{
+  position: absolute;
+  width: 10%;
+  top:-6%;
+  left: 15%;
+  transform: rotateY(180deg);
+  z-index: 5;
+  filter: none;
+}
 footer{
   width: 100%;
   height: 70px;
@@ -640,20 +643,23 @@ footer{
     box-shadow: inset 0 3px #111, inset 0 -3px #555;
   }
   @media only screen and (max-width: 767px) {
-    .previous_btn {
-      left: 50px;
-    }
-    .next_btn {
-      right: 50px;
-    }
-    .previous_btn {
-      left: 50px;
-    }
-    .next_btn {
-      right: 50px;
-    }
-    .jungle, .frame img, .lastone{
+    .jungle, .pctop, .lastone,.zebra,.aligator,.monkey{
       display: none;
+    }
+    .frame{
+      overflow: visible;
+    }
+    .mobiletop1{
+      width: 70%;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .mobiletop2{
+      width: 70%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
     }
     .logotext{
       width: 120px;
@@ -667,6 +673,7 @@ footer{
     }
     .title{
       width: 70%;
+      top: 43%;
     }
     .nav{
       width: 300px;
@@ -674,6 +681,13 @@ footer{
       /* flex-direction: column; */
       top: 50%;
       right: 10%;
+    }
+    .abstract2{
+      top: 300px;
+      transform: rotateY(180deg);
+    }
+    .abstract3{
+      top: 600px;
     }
     .list{
       padding: 0;
@@ -685,16 +699,23 @@ footer{
     .profile{
       width: 100px;
       height: 100px;
-      margin: 5px;
+      margin: 10px;
+      border: 5px solid #4cac91;
+
     }
+
     .front img{
       padding: 10px;
     }
     .divider{
       margin: 50px auto;
     }
+    .countName{
+      position: absolute;
+      top: -20%;
+    }
     .album{
-      margin-top: 0;
+      margin-top: 100px;
     }
     .album .fas{
       font-size: 30px;
@@ -702,17 +723,22 @@ footer{
     .slide_viewer{
       height: 30vh;
     }
+    .previous_btn {
+      left: 5%;
+    }
+    .next_btn {
+      right: 5%;
+    }
     .coming-soon{
       bottom: -20%;
     }
     .countdown{
-      width: 100%;
+      width: 80%;
     }
     .countdown div{
-      width: 80px;
+      padding: 0;
       display: flex;
       justify-content: center;
-      padding: 5px;
       text-align: center;
       background-color: transparent;
     }
@@ -722,7 +748,9 @@ footer{
   .minute,
   .second,h3 {
     font-size: 1rem;
+    letter-spacing: 3px;
   }
+
   footer{
     line-height: 1.5;
   }
