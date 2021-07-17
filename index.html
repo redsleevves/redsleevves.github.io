@@ -51,11 +51,17 @@
 			<div data-depth="0.18" id="group1">
 				<img class="lyer1" src="/imgs/SVG/group1.svg">
 			</div>
+			<div data-depth="0.00" class="character character03">
+				<img src="/imgs/profile/teacher02-RBG.png">
+			</div>
 			<div data-depth="0.15" data-depth-y="-0.10" id="group2">
 				<img class="lyer2" src="/imgs/SVG/group2.svg">
 			</div>
-			<div data-depth="0.00" class="character">
-				<img src="/imgs/SVG/observer.svg">
+			<div data-depth="0.00" class="character character01">
+				<img src="/imgs/profile/teacher05-RBG.png">
+			</div>
+			<div data-depth="0.00" class="character character02">
+				<img src="/imgs/profile/teacher03-RBG.png">
 			</div>
 			<div data-depth="0.10" data-depth-y="-0.10" id="group3">
 				<img class="lyer3" src="/imgs/SVG/group3.svg">
@@ -63,6 +69,7 @@
 			<div data-depth="0.05" id="group4">
 				<img class="lyer4" src="/imgs/SVG/group3.svg">
 			</div>
+
 		</div>
 		<div class="arrow">
 			<i class="fas fa-chevron-circle-down"></i>
@@ -102,7 +109,14 @@
 						<img src="/imgs/profile/01 (2).jpg">
 					</div>
 				</div>
-				<div class="profile"><img src="/imgs/SVG/lion.svg"></div>
+				<div class="profile anim-object">
+					<div class="front face teacher">
+						<img src="/imgs/SVG/lion.svg">
+					</div>
+					<div class="back face">
+						<img src="/imgs/profile/teacher01.jpg">
+					</div>
+				</div>
 				<div class="profile anim-object">
 					<div class="front face">
 						<img src="/imgs/profile/E.svg">
@@ -127,7 +141,14 @@
 						<img src="/imgs/profile/04 (2).jpg">
 					</div>
 				</div>
-				<div class="profile"><img src="/imgs/SVG/tiger.svg"></div>
+				<div class="profile anim-object">
+					<div class="front face teacher">
+						<img src="/imgs/SVG/tiger.svg">
+					</div>
+					<div class="back face">
+						<img src="/imgs/profile/teacher02.jpg">
+					</div>
+				</div>
 				<div class="profile anim-object">
 					<div class="front face">
 						<img src="/imgs/profile/V.svg">
@@ -152,7 +173,14 @@
 						<img src="/imgs/profile/07 (2).jpg">
 					</div>
 				</div>
-				<div class="profile"><img src="/imgs/SVG/zibra.svg"></div>
+				<div class="profile anim-object">
+					<div class="front face teacher">
+						<img src="/imgs/SVG/zibra.svg">
+					</div>
+					<div class="back face">
+						<img src="/imgs/profile/teacher05.jpg">
+					</div>
+				</div>
 				<div class="profile anim-object">
 					<div class="front face">
 						<img src="/imgs/profile/P.svg">
@@ -197,6 +225,11 @@
 					<img class="slide" src="/imgs/group02.jpg">
 					<img class="slide" src="/imgs/group03.jpg">
 					<img class="slide" src="/imgs/group04.jpg">
+					<img class="slide" src="/imgs/group05.jpg">
+					<img class="slide" src="/imgs/group06.jpg">
+					<img class="slide" src="/imgs/group07.jpg">
+					<img class="slide" src="/imgs/group08.jpg">
+					<img class="slide" src="/imgs/group09.jpg">
 				</div>
 			</div>
 			<div class="slide_buttons"></div>
@@ -239,6 +272,18 @@
 		<img class="bird" src="/imgs/SVG/bird.svg">
 		<img class="col-10 m-auto" src="/imgs/SVG/ticket2.svg">
 	</section>
+
+	<section class="container memory">
+		<img class="col-lg-6 tag" src="/imgs/SVG/tag.svg">
+		</img>
+		<div id="mem_pic" class="d-flex flex-wrap"></div>
+		<div class="pop d-none">
+			<i class="fas fa-times closepop"></i>
+			<i class="fas fa-chevron-circle-left leftpop"></i>
+			<i class="fas fa-chevron-circle-right rightpop"></i>
+		</div>
+	</section>
+
 	<footer>
 		HappyLand 快樂幼兒園
 		<a href="http://www.freepik.com">Designed by pch.vector / Freepik</a>
@@ -386,8 +431,57 @@
 			if (-Bpos > document.body.clientWidth) { $('.zebra').css('transform', 'rotateY(0deg)') }
 			if ($('.zebra').offset().left <= 0) { $('.zebra').css('transform', 'rotateY(180deg)') }
 
-
 		}
+
+		for (i = 0; i <= 18; i = i + 1) {
+			let img = document.createElement("img");
+			let div = document.createElement("div");
+			document.getElementById('mem_pic').appendChild(div);
+			$('#mem_pic div').addClass('pic_box')
+			$(`#mem_pic > :nth-child(${i})`).attr('data-index', i);
+			document.getElementsByClassName('pic_box')[i].appendChild(img);
+			$(`#mem_pic > :nth-child(${i}) > :nth-child(1)`).attr('src', '/imgs/memory' + i + '.jpg')
+		}
+
+		$('.pic_box').click(function () {
+			let picked = $(this).index() + 1
+			console.log(picked);
+			$(this).addClass('picked')
+			$('.pop').removeClass('d-none');
+			$('.pop').append('<img src="/imgs/memory' + picked + '.jpg">')
+			$('.pop').attr('data-index', picked)
+		})
+
+
+		$(document).on('click', '.leftpop', function () {
+			let current = parseInt($('.pop').attr('data-index'))
+			if (current > 1) {
+				$('.pop img').attr('src', '/imgs/memory' + (current - 1) + '.jpg')
+				$('.pop').attr('data-index', (current - 1))
+				current
+			}
+			console.log(current)
+		});
+
+		$(document).on('click', '.rightpop', function () {
+			let current = parseInt($('.pop').attr('data-index'))
+			if (current < 18) {
+				$('.pop img').attr('src', '/imgs/memory' + (current + 1) + '.jpg')
+				$('.pop').attr('data-index', (current + 1))
+				current
+			}
+			console.log(current)
+
+		});
+
+		$(document).on('click', '.closepop', function () {
+			$('.pop').addClass('d-none');
+			$('.pop').html(`<i class="fas fa-times closepop"></i>
+			<i class="fas fa-chevron-circle-left leftpop"></i>
+			<i class="fas fa-chevron-circle-right rightpop"></i>`)
+			$('.pic_box').removeClass('picked')
+
+		});
 
 		// for (i = 1; i <= 36; i = i + 1) {
 		// 	let div = document.createElement("div");
@@ -438,7 +532,7 @@
 
 
 		const countdown = () => {
-			const countDate = new Date('July 30, 2021 00:00:00').getTime();
+			const countDate = new Date('July 24, 2021 10:30:00').getTime();
 			const now = new Date().getTime();
 			const gap = countDate - now;
 
