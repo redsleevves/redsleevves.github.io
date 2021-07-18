@@ -20,9 +20,11 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
+	<div id="LoadingBar">正在載入，請稍候……</div>
 	<header class="container-fluid">
 		<img class="mobiletop1 d-lg-none" src="/imgs/SVG/mobile1.svg">
 		<img class="mobiletop2 d-lg-none" src="/imgs/SVG/mobile2.svg">
@@ -88,11 +90,6 @@
 		<div class="abstract abstract3">
 			<img src="/imgs/SVG/leafside.svg">
 			<img src="/imgs/SVG/leafside2.svg">
-		</div>
-		<div class="animals">
-			<img class="monkey slide-in" src="/imgs/SVG/monkey.svg">
-			<img class="aligator slide-in" src="/imgs/SVG/aligator.svg">
-			<img class="zebra slide-in" src="/imgs/SVG/zebra.svg">
 		</div>
 	</div>
 
@@ -283,7 +280,11 @@
 			<i class="fas fa-chevron-circle-right rightpop"></i>
 		</div>
 	</section>
-
+	<div class="animals">
+		<img class="monkey slide-in" src="/imgs/SVG/monkey.svg">
+		<img class="aligator slide-in" src="/imgs/SVG/aligator.svg">
+		<img class="zebra slide-in" src="/imgs/SVG/zebra.svg">
+	</div>
 	<footer>
 		HappyLand 快樂幼兒園
 		<a href="http://www.freepik.com">Designed by pch.vector / Freepik</a>
@@ -644,6 +645,13 @@
 
 			advance();
 		});
+		window.onload = initPage()
+		function initPage() {
+			var objLoading = document.getElementById("LoadingBar");
+			if (objLoading != null) {
+				objLoading.style.display = "none";
+			}
+		}
 	</script>
 
 </body>
