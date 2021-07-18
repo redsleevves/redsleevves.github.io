@@ -24,7 +24,7 @@
 </head>
 
 <body>
-	<div id="LoadingBar">正在載入，請稍候……</div>
+	<!-- <div id="LoadingBar">正在載入，請稍候……</div> -->
 	<header class="container-fluid">
 		<img class="mobiletop1 d-lg-none" src="/imgs/SVG/mobile1.svg">
 		<img class="mobiletop2 d-lg-none" src="/imgs/SVG/mobile2.svg">
@@ -43,6 +43,7 @@
 			<button class="btn btn-border-o list6"><img src="/imgs/SVG/list.svg"></button>
 			<button class="btn btn-border-o countdown6"><img src="/imgs/SVG/countdown.svg"></button>
 			<button class="btn btn-border-o link6"><img src="/imgs/SVG/link.svg"></button>
+			<button class="btn btn-border-o memory6"><img src="/imgs/SVG/memory.svg"></button>
 		</div>
 		<div class="title">
 			<img src="/imgs/SVG/name1.svg">
@@ -267,19 +268,19 @@
 
 	<section class="container ticket" id="ticket">
 		<img class="bird" src="/imgs/SVG/bird.svg">
-		<img class="col-10 m-auto" src="/imgs/SVG/ticket2.svg">
+		<img class="col-10 m-auto" src="/imgs/SVG/ticket3.svg">
 	</section>
 
-	<section class="container memory">
-		<img class="col-lg-6 tag" src="/imgs/SVG/tag.svg">
+	<section class="container memory" id="memory">
+		<img class="col-lg-6 tag" src="/imgs/SVG/tag3.svg">
 		</img>
 		<div id="mem_pic" class="d-flex flex-wrap"></div>
-		<div class="pop d-none">
-			<i class="fas fa-times closepop"></i>
-			<i class="fas fa-chevron-circle-left leftpop"></i>
-			<i class="fas fa-chevron-circle-right rightpop"></i>
-		</div>
 	</section>
+	<div class="pop d-none">
+		<i class="fas fa-times closepop"></i>
+		<i class="fas fa-chevron-circle-left leftpop"></i>
+		<i class="fas fa-chevron-circle-right rightpop"></i>
+	</div>
 	<div class="animals">
 		<img class="monkey slide-in" src="/imgs/SVG/monkey.svg">
 		<img class="aligator slide-in" src="/imgs/SVG/aligator.svg">
@@ -371,6 +372,7 @@
 	</div> -->
 
 	<!-- Scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
 	<script src="/script/parallax.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
@@ -401,11 +403,15 @@
 			jumpTo(downto)
 		})
 		$('.link6').click(function () {
-			var downto = document.getElementById("ticket").offsetTop
+			var downto = document.getElementById("ticket").offsetTop - 100
 			jumpTo(downto)
 		})
-
-		window.addEventListener('scroll', Handler)
+		$('.memory6').click(function () {
+			var downto = document.getElementById("memory").offsetTop
+			jumpTo(downto)
+		})
+		var throttled = _.throttle(Handler, 100);
+		$(window).scroll(throttled);
 		function Handler() {
 			let Apos = document.querySelector('.aligator').offsetWidth + document.querySelector('.aligator').offsetLeft
 			let Bpos = -document.querySelector('.zebra').offsetWidth - document.querySelector('.zebra').offsetLeft
@@ -445,6 +451,12 @@
 		}
 
 		$('.pic_box').click(function () {
+			let winTop = window.scrollY
+			if ($(window).width() > 1000) {
+				$('.pop').css('top', winTop + 100)
+			} else {
+				$('.pop').css('top', winTop + 200)
+			}
 			let picked = $(this).index() + 1
 			console.log(picked);
 			$(this).addClass('picked')
@@ -452,7 +464,6 @@
 			$('.pop').append('<img src="/imgs/memory' + picked + '.jpg">')
 			$('.pop').attr('data-index', picked)
 		})
-
 
 		$(document).on('click', '.leftpop', function () {
 			let current = parseInt($('.pop').attr('data-index'))
