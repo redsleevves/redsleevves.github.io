@@ -519,6 +519,7 @@ img {
 }
 .ticket{
   position: relative;
+  margin-bottom: 50px;
 }
 .ticket .bird{
   position: absolute;
@@ -528,6 +529,14 @@ img {
   transform: rotateY(180deg);
   z-index: 5;
   filter: none;
+}
+.door{
+  background-color: white;
+  color: #4cac91;
+  font-size: 28px;
+  position: absolute;
+  bottom: 145px;
+  left: 200px;
 }
 .mobilech{
   display: none;
@@ -721,8 +730,12 @@ footer{
     letter-spacing: 3px;
   }
 
-  .ticket{
-    margin-bottom: 50px;
+  .door{
+    font-size: 14px;
+    bottom: 30px;
+    left: 65px;
+    padding:3px;
+    border-radius: 5px;
   }
 
   #mem_pic{
